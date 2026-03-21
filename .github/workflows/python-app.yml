@@ -8,9 +8,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install nuitka zstandard
-      - run: pip install -r requirements.txt
-      - run: python -m nuitka --standalone --onefile guangzhou_line5_timetable.py
+      - run: pip install nuitka zstandard pandas PyQt6 requests beautifulsoup4 pycryptodome lxml openpyxl
+      
+      # 安装依赖分析工具
+      - run: choco install dependencywalker -y || true
+      
+      # 启用 PyQt6 插件，允许自动下载工具
+      - run: python -m nuitka --standalone --onefile --enable-plugin=pyqt6 --assume-yes-for-downloads guangzhou_line5_timetable.py
+      
       - uses: actions/upload-artifact@v4
         with:
           name: exe
