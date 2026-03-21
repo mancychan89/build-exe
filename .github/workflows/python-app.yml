@@ -9,7 +9,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install nuitka zstandard
-      - run: pip install -r requirements.txt          # ← 从文件安装
+      - run: pip install -r requirements.txt
       - run: python -m nuitka --standalone --onefile guangzhou_line5_timetable.py
       - uses: actions/upload-artifact@v4
         with:
