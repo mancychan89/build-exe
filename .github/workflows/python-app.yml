@@ -23,7 +23,7 @@ jobs:
             --windows-icon-from-ico=time.ico `
             --include-data-files=time.png=time.png `
             --assume-yes-for-downloads `
-            --jobs=2 `
+            --jobs=4 `
             guangzhou_line5_timetable.py
       
       - uses: actions/upload-artifact@v4
