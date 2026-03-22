@@ -13,8 +13,18 @@ jobs:
       # 安装依赖分析工具
       - run: choco install dependencywalker -y || true
       
-      # 启用 PyQt6 插件，允许自动下载工具
-      - run: python -m nuitka --standalone --onefile --enable-plugin=pyqt6 --windows-disable-console --assume-yes-for-downloads --jobs=2  guangzhou_line5_timetable.py
+      # Nuitka 编译（包含图标和资源文件）
+      - run: |
+          python -m nuitka `
+            --standalone `
+            --onefile `
+            --enable-plugin=pyqt6 `
+            --windows-disable-console `
+            --windows-icon-from-ico=time.ico `
+            --include-data-files=time.png=time.png `
+            --assume-yes-for-downloads `
+            --jobs=2 `
+            guangzhou_line5_timetable.py
       
       - uses: actions/upload-artifact@v4
         with:
