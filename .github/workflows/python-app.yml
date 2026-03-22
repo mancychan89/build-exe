@@ -20,11 +20,11 @@ jobs:
             --onefile `
             --enable-plugin=pyqt6 `
             --windows-disable-console `
-            --windows-icon-from-ico=time.ico `
-            --include-data-files=time.png=time.png `
+            --windows-icon-from-ico=app_icon.ico `
+            --include-data-files=app_icon.ico=app_icon.ico `
             --assume-yes-for-downloads `
             --jobs=4 `
-            guangzhou_line5_timetable.py
+            key_management_system_v5.py
       
       - uses: actions/upload-artifact@v4
         with:
