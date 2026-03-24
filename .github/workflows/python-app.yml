@@ -7,9 +7,6 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    strategy:
-      matrix:
-        job: [1, 2]
     
     steps:
     - uses: actions/checkout@v4
@@ -32,11 +29,12 @@ jobs:
           --include-data-files=time.png=time.png `
           --windows-icon-from-ico=time.ico `
           --output-filename=时刻表助手 `
-          --jobs=${{ matrix.job }} `
+          --jobs=2 `
+          --assume-yes-for-downloads `
           guangzhou_line5_timetable.py
     
     - name: Upload
       uses: actions/upload-artifact@v4
       with:
-        name: 时刻表助手-${{ matrix.job }}
+        name: 时刻表助手
         path: guangzhou_line5_timetable.dist/
