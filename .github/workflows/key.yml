@@ -1,0 +1,42 @@
+name: Build with Nuitka
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        pip install nuitka
+        pip install -r key_requirements.txt
+    
+    - name: Build
+      run: |
+        python -m nuitka `
+          --standalone `
+          --windows-console-mode=disable `
+          --include-data-files=msyh.ttc=msyh.ttc `
+          --include-data-files=app_icon.ico=app_icon.ico `
+          --windows-icon-from-ico=app_icon.ico `
+          --output-filename=还你门匙 `
+          --jobs=2 `
+          --assume-yes-for-downloads `
+          --enable-plugin=pyqt6 `
+          key_management_system_v5.py
+    
+    - name: Upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: 还你门匙
+        path: key_management_system_v5.dist/
