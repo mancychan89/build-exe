@@ -1,8 +1,7 @@
 PyQt6
-pyautogui
-pygetwindow
-pyperclip
-python-barcode
-xlrd
 pandas
+requests
+beautifulsoup4
 openpyxl
+pycryptodome
+lxml
