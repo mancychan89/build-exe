@@ -1,0 +1,9 @@
+pyautogui
+pygetwindow
+pyperclip
+xlrd
+python-barcode
+pillow
+pandas
+openpyxl
+PyQt6
